@@ -254,6 +254,12 @@ def index() -> FileResponse:
     return FileResponse(str(index_file))
 
 
+@app.get("/welcome")
+def welcome() -> dict[str, str]:
+    """Return a simple welcome message."""
+    return {"message": "welcome"}
+
+
 @app.get("/api/connect")
 def connect(
     db_path: str = Query(..., description="SQLite 数据库路径"),
