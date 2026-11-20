@@ -1,0 +1,6 @@
+{
+  "url": "http://127.0.0.1:13559/welcome",
+  "status": 200,
+  "content_type": "application/json",
+  "body": "{\"message\":\"welcome\"}"
+}
