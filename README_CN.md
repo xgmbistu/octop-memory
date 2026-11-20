@@ -139,6 +139,18 @@ octop-memory --help
 
 dashboard 当前仅供源码 checkout 配合 `[dashboard]` 依赖运行，其模块未进入 wheel。仅从 PyPI 安装 `octop-memory[dashboard]` 不会获得 dashboard 命令。
 
+### Dashboard HTTP 接口
+
+运行源码 dashboard（`octop-memory dashboard`，或 `uvicorn octop_memory.adapters.dashboard.server:app`）时，FastAPI app 暴露以下原生路由：
+
+| 方法 | 路径 | 响应 |
+|---|---|---|
+| `GET` | `/welcome` | `200` JSON `{"message": "welcome"}` |
+| `GET` | `/` | Dashboard 前端（`index.html`） |
+| `GET` | `/api/*` | 读取 / 查询记忆数据（connect、stats、defaults、namespaces 等） |
+
+`/welcome` 是轻量的只读欢迎端点：无参数、无需连接数据库。
+
 ## 外部 Agent 适配
 
 `plugins/<host>/` 将外部 Agent 的 hook、工具调用和配置映射到共享 Python runtime。

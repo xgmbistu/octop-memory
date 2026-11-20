@@ -141,6 +141,18 @@ Run `<command> --help` for arguments. `db slim FILE` previews SQLite checkpoint 
 
 The dashboard is available from a source checkout with `[dashboard]` dependencies; its modules are currently excluded from the wheel. Installing `octop-memory[dashboard]` from PyPI alone does not provide the dashboard command.
 
+### Dashboard HTTP endpoints
+
+When running the source dashboard (`octop-memory dashboard`, or `uvicorn octop_memory.adapters.dashboard.server:app`), the FastAPI app exposes these native routes:
+
+| Method | Path | Response |
+|---|---|---|
+| `GET` | `/welcome` | `200` JSON `{"message": "welcome"}` |
+| `GET` | `/` | Dashboard frontend (`index.html`) |
+| `GET` | `/api/*` | Read/query memory data (connect, stats, defaults, namespaces, ...) |
+
+`/welcome` is a lightweight read-only welcome endpoint: it takes no parameters and requires no database connection.
+
 ## External agent adapters
 
 `plugins/<host>/` maps external agent hooks, tools, and configuration to the shared Python runtime.
