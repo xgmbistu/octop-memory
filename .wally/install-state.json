@@ -1,0 +1,44 @@
+{
+  "schema": 2,
+  "sop_version": "2.0",
+  "revision": "e77b18fb8f713d82",
+  "profile": "generic",
+  "steps": 6,
+  "docs": [
+    "architecture",
+    "relationship",
+    "apis",
+    "sqls",
+    "unittest",
+    "integration_test",
+    "devops"
+  ],
+  "clients": [
+    "codebuddy"
+  ],
+  "commit": "no",
+  "language": "zh",
+  "managed_files": {
+    ".wally/profiles/project.md": "6e76542b325c530441c4642441502c2d325fa7f5527bbbd886ebc19f105dc266",
+    ".wally/core/entry.md": "3598726e730dd33349c9dcd4148b00f3af738760b04bca683e98c6ea15ac16c2",
+    ".wally/core/scope.md": "34a00d9c7788d73648756991c9ffb9d32f4ac762aa2eecb278a2ce85c399335f",
+    ".wally/docs/apis/_template.md": "cffda5e85e0ec6bd3b840d73d33fa02f81d3e7b4cbbd43652738bd72e1810295",
+    ".wally/docs/apis/index.md": "c97e84605af624f0cbb996224ce14f60173b0714a41dca1694682d2d30d8011a",
+    ".wally/docs/devops/env.md": "b7f792462bf5ee5e8d4c7addddd1cb9d508d52d1958fb991bf07694c068b4a41",
+    ".wally/docs/devops/test-env-deploy.md": "cefd0cfc634a5d0cec3f3f9739f491918560910395ae075bf108c3b33b6d209a",
+    ".wally/docs/integration_test/integration_test.md": "b24df399dc4577c8c695065a881134717e441b6cca11f1b98fec716883763989",
+    ".wally/docs/integrations/index.md": "5d7763081db745f3eedd8f6ba080a56322d231904e5b52c21ce7dabe80810b09",
+    ".wally/docs/overview/system-architecture.md": "f8a3b0456a700f5749b474b86df45e7795bf228312a917f2f2e0093cc28fab46",
+    ".wally/docs/sqls/README.md": "1cd3453b90ff062f04488edc4c60fac3ada9207e4e9e175160835431b183d2b2",
+    ".wally/docs/unittest/unittest.md": "5966bd3d5120ac59b862ab481f8142876c04cf1cad6bb6d96fb6e1a05c75f6c7",
+    ".wally/review.md": "c837ffb0bbf8580aa3c7786d35dcc73599a8324768e643e670c45c9adffd53ed",
+    ".wally/local/.gitignore": "cdbcae15105d6b781e620813c79c7e868740d4e9cc53ce6f5fcbbc12387adf4b",
+    ".agents/skills/clarify/SKILL.md": "9baa2842a0a8b159a53e6501d0f3a8fafab8b07b0ac962bd0bb721576e0109a1",
+    ".agents/skills/wally-open-cli/SKILL.md": "4f4631005fa13ac5a03324eca9cab8e0ca4caf8cea1f29755a962eb972440477",
+    "AGENTS.md": "fc07813cfe66bc18f0b5f09438d2687937e3cbe083622063857377aba8f8faca",
+    ".codebuddy/skills/clarify/SKILL.md": "9baa2842a0a8b159a53e6501d0f3a8fafab8b07b0ac962bd0bb721576e0109a1",
+    ".codebuddy/skills/wally-open-cli/SKILL.md": "4f4631005fa13ac5a03324eca9cab8e0ca4caf8cea1f29755a962eb972440477"
+  },
+  "translation_sources": {},
+  "custom_commit": false
+}

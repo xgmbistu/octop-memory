@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "deploy": {
+    "command": "bash scripts/deploy-openclaw.sh",
+    "guide": "OpenClaw 主机部署：scripts/deploy-openclaw.sh（幂等重跑即升级；前置 git、Python3 venv、Node 20+、octop-memory[cli]；REPO_URL/NAMESPACE/DB_PATH 等按脚本头注释用环境变量或 --flag 提供）。配置与操作权威说明见 docs/integrations.md#openclaw。库版本发布走 CONTRIBUTING.md#branching-and-releases 与 .github/workflows/release.yml 的 tag v* → GitHub Actions 流程（需发布授权；CONTRIBUTING 要求 PR/Actions 流程，禁止未授权 push tag 或本地 make publish/twine 上传）。注意：本阶段为静态核验配置，不代表已执行或已获外部写入授权。",
+    "verify": "octopmemory-bridge --probe（期望 ok=true 且 fts5=true）；octop-memory openclaw doctor --openclaw-config \"$OPENCLAW_CONFIG\" --extensions-dir \"$EXTENSIONS_DIR\"（期望检查无错误）。部署脚本末尾打印 namespace/db/venv/插件目录供人工核对生效版本。",
+    "rollback": "",
+    "readiness": "pending",
+    "gaps": [
+      "目标 OpenClaw 主机、访问方式、namespace 与资源归属未在仓库内确认；deploy-openclaw.sh 会覆盖 ~/.openclaw/extensions/octopmemory，需用户提供目标环境信息。",
+      "缺少部署授权边界与基线/生效版本核对依据；生产发布还需明确 release 授权（CONTRIBUTING 要求 PR/Actions 流程，未授权不 push tag、不上传制品）。",
+      "仓库无已文档化的回滚步骤/触发条件与备份策略（deploy-openclaw.sh 无备份，重跑仅升级），需用户确认回滚与清理方案。",
+      "凭证仅经环境变量或平台入口获取（PyPI 由 GitHub environment pypi 的 OIDC，见 release.yml），不得本地明文；需确认可用获取入口。"
+    ]
+  },
+  "it": {
+    "command": "bash scripts/e2e_openclaw_test.sh",
+    "guide": "OpenClaw E2E：scripts/e2e_openclaw_test.sh（桥可用性、openclaw.json 配置、SQLite/raw_events、dashboard API）。可选真实 Hermes 契约 E2E：bash scripts/e2e_hermes_test.sh（需 HERMES_SOURCE）。后端一致性：设置专用 TEST_POSTGRES_DSN 后运行 uv run pytest tests/test_backend_parity.py tests/test_postgres.py -q -rs。范围与命令见 docs/agent/TEST_MATRIX.md，操作与排查见 docs/integrations.md#shared-verification-and-troubleshooting。注意：本阶段为静态核验配置，不代表已执行。",
+    "success_criteria": "以脚本退出码为准：exit 0 且输出“所有检查通过”（内部 FAILED=0）为通过；bridge --probe 需 ok=true/fts5=true，openclaw.json 字段与 plugins.slots.memory=octopmemory 正确，raw_events 有记录，dashboard /api/connect、/api/stats、/api/namespaces 返回 ok。raw_events 为空、dashboard/Hermes/PG 用例全部跳过均不算通过，需单独报告。",
+    "readiness": "pending",
+    "gaps": [
+      "IT 目标环境不可从仓库确认：需已安装 OpenClaw 且 octopmemory-bridge 在 PATH，memory.sqlite 需至少一次真实对话写入 raw_events；dashboard 用例需 fastapi/uvicorn（octop-memory[dashboard]）。",
+      "Hermes E2E 需提供真实 HERMES_SOURCE（默认尝试联网 clone，可能无权限）；真实后端一致性需用户提供专用 TEST_POSTGRES_DSN。",
+      "未定义独立测试环境下的数据隔离/清理与逐用例报告落盘位置（脚本仅输出到 stdout，结果需手工写入任务记录）。"
+    ]
+  }
+}
